@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Будешь моей валентинкой?</title>
-    <meta name="description" content="Valentine's Day proposal">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Будешь моей валентинкой?</title>
+
+  <!-- Open Graph / Messenger Previews -->
+  <meta property="og:title" content="Важное предложение... 💌">
+  <meta property="og:description" content="Давай проведем вместе 14 февраля?">
+  <meta property="og:image" content="assets/1.JPG">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#ff5f9e">
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <main class="container">
-        <div class="card">
-            <img src="assets/valentine.png" alt="Valentine's Day Heart" class="hero-image">
-            <h1 class="headline">Давай проведем вместе 14 февраля, будешь моей валентинкой?</h1>
-            <div class="actions">
-                <button id="btn-no" class="btn btn-filled btn-secondary">Нет</button>
-                <button id="btn-yes" class="btn btn-filled">Да</button>
-            </div>
-        </div>
-    </main>
-    <canvas id="confetti-canvas"></canvas>
-    <script src="main.js" defer></script>
+<main class="container">
+  <div class="card">
+    <img src="assets/1.JPG" alt="Will you be my valentine?" class="hero-image">
+    <h1 class="headline">Давай проведем вместе 14 февраля, будешь моей валентинкой?</h1>
+    <div class="actions">
+      <button id="btn-no" class="btn btn-filled btn-secondary">Нет</button>
+      <button id="btn-yes" class="btn btn-filled">Да</button>
+    </div>
+  </div>
+</main>
+<canvas id="confetti-canvas"></canvas>
+<script src="main.js" defer></script>
 </body>
+
 </html>

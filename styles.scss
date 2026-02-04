@@ -1,37 +1,31 @@
 @use "sass:map";
 
-// Material 3 Design Tokens (Simplified)
-$md-sys-color-primary: #B3261E; // Red/Pink accent
+// Material 3 Design Tokens
+$md-sys-color-primary: #ff5f9e; // Custom Romantic Pink
 $md-sys-color-on-primary: #FFFFFF;
-$md-sys-color-primary-container: #F9DEDC;
-$md-sys-color-on-primary-container: #410E0B;
+$md-sys-color-primary-container: #FFD9E3;
+$md-sys-color-on-primary-container: #3E001D;
 
-$md-sys-color-secondary: #775652;
+$md-sys-color-secondary: #9C404E; // Warm secondary derivation
 $md-sys-color-on-secondary: #FFFFFF;
-$md-sys-color-secondary-container: #FFDAD6; // Pinkish
-$md-sys-color-on-secondary-container: #2C1512;
+$md-sys-color-secondary-container: #FFD9DE;
+$md-sys-color-on-secondary-container: #400010;
 
-$md-sys-color-background: #FFFBFE;
-$md-sys-color-on-background: #1C1B1F;
-$md-sys-color-surface: #FFFBFE;
-$md-sys-color-on-surface: #1C1B1F;
+$md-sys-color-background: #FFFBFC; // Warm white
+$md-sys-color-on-background: #201A1B;
+$md-sys-color-surface: #FFFBFC;
+$md-sys-color-on-surface: #201A1B;
 
-$md-sys-color-surface-variant: #E7E0EC;
-$md-sys-color-on-surface-variant: #49454F;
-$md-sys-color-outline: #79747E;
+$md-sys-color-surface-variant: #F4DDDF;
+$md-sys-color-on-surface-variant: #524345;
+$md-sys-color-outline: #847275;
 
-$md-ref-typeface-brand: 'Roboto', sans-serif;
-$md-ref-typeface-plain: 'Roboto', sans-serif;
+// Typography - System Fonts for clean load
+$md-ref-typeface-brand: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$md-ref-typeface-plain: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 $md-sys-typescale-display-small-font: $md-ref-typeface-brand;
-$md-sys-typescale-display-small-line-height: 44px;
-$md-sys-typescale-display-small-size: 36px;
-$md-sys-typescale-display-small-weight: 400;
-
-$md-sys-typescale-label-large-font: $md-ref-typeface-plain;
-$md-sys-typescale-label-large-line-height: 20px;
-$md-sys-typescale-label-large-size: 14px;
-$md-sys-typescale-label-large-weight: 500;
+// Responsive typescale handling done in CSS media queries for simplicity
 
 $md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
 $md-sys-motion-duration-short4: 200ms;
@@ -43,8 +37,10 @@ $md-sys-shape-corner-full: 9999px;
 $md-sys-elevation-level1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 $md-sys-elevation-level2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
 
-// Reset
-*, *::before, *::after {
+// Reset & Base
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -59,7 +55,7 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  overflow-x: hidden; // Prevent scroll when button moves near edge
+  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -70,20 +66,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10; // Above confetti
+  z-index: 10;
   position: relative;
 }
 
 .card {
-  background-color: $md-sys-color-surface;
+  background-color: #FFF0F4; // Very subtle pink tint for surface
   border-radius: $md-sys-shape-corner-extra-large;
-  padding: 24px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 24px;
-  // Use a subtle surface tint or just shadow for elevation
+  gap: 32px;
   box-shadow: $md-sys-elevation-level1;
   width: 100%;
   transition: box-shadow $md-sys-motion-duration-short4 $md-sys-motion-easing-standard;
@@ -95,39 +90,46 @@ body {
 
 .hero-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   height: auto;
   border-radius: $md-sys-shape-corner-extra-large;
   object-fit: cover;
-  // Add a soft fade-in animation
   animation: fadeIn 1s $md-sys-motion-easing-standard;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .headline {
   font-family: $md-sys-typescale-display-small-font;
-  font-weight: $md-sys-typescale-display-small-weight;
-  font-size: 24px; // Mobile friendly start
-  line-height: 32px;
-  color: $md-sys-color-on-surface;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  color: #8C1D42; // Darker version of primary for text contrast
+  margin: 0 8px;
 
   @media (min-width: 600px) {
-    font-size: $md-sys-typescale-display-small-size;
-    line-height: $md-sys-typescale-display-small-line-height;
+    font-size: 32px;
   }
 }
 
 .actions {
   display: flex;
-  gap: 16px;
+  gap: 24px; // Increased separation
   width: 100%;
   justify-content: center;
-  flex-wrap: wrap; // Allow wrapping on very small screens
-  position: relative; // Context for button absolute movement if needed, though we track viewport
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .btn {
@@ -135,31 +137,33 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
-  height: 40px;
-  min-width: 100px;
-  
-  font-family: $md-sys-typescale-label-large-font;
-  font-weight: $md-sys-typescale-label-large-weight;
-  font-size: $md-sys-typescale-label-large-size;
-  line-height: $md-sys-typescale-label-large-line-height;
-  letter-spacing: 0.1px;
-  
+
+  // Increased size for better touch targets
+  padding: 0 32px;
+  height: 56px;
+  min-width: 120px;
+
+  font-family: $md-ref-typeface-plain;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
   border-radius: $md-sys-shape-corner-full;
-  
-  transition: 
-    background-color $md-sys-motion-duration-short4 $md-sys-motion-easing-standard, 
+
+  transition:
+    background-color $md-sys-motion-duration-short4 $md-sys-motion-easing-standard,
     box-shadow $md-sys-motion-duration-short4 $md-sys-motion-easing-standard,
     transform $md-sys-motion-duration-short4 $md-sys-motion-easing-standard;
 
   position: relative;
   overflow: hidden;
 
-  // Ripple effect layer (pseudo)
+  // Ripple
   &::after {
     content: '';
     position: absolute;
@@ -170,38 +174,40 @@ body {
   }
 
   &:hover::after {
-    opacity: 0.08;
-  }
-  
-  &:active::after {
     opacity: 0.12;
   }
 
+  &:active::after {
+    opacity: 0.16;
+  }
+
   &:active {
-    transform: scale(0.98); // M3 press state feedback
+    transform: scale(0.96);
   }
 }
 
 .btn-filled {
   background-color: $md-sys-color-primary;
   color: $md-sys-color-on-primary;
-  box-shadow: 0px 1px 2px rgba(0,0,0,0.12); // Low elevation
+  box-shadow: 0px 4px 8px rgba(255, 95, 158, 0.25); // Colored shadow
 
   &:hover {
-    box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.15); // Elevation 1
+    box-shadow: 0px 6px 12px rgba(255, 95, 158, 0.35);
+    background-color: lighten($md-sys-color-primary, 5%);
   }
 
   &.btn-secondary {
-    background-color: $md-sys-color-secondary-container;
-    color: $md-sys-color-on-secondary-container;
+    background-color: $md-sys-color-surface-variant;
+    color: $md-sys-color-on-surface-variant;
+    box-shadow: none;
   }
 }
 
-// "No" button specific styles for absolute positioning when moving
+// "No" button movement
 #btn-no {
-  transition: top $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard,
-              left $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard,
-              transform $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard;
+  transition:
+    top $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard,
+    left $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard;
 }
 
 #confetti-canvas {

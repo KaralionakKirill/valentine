@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ура! 💖</title>
+
+    <!-- Open Graph for Agree Page -->
+    <meta property="og:title" content="Она сказала ДА! ✨">
+    <meta property="og:description" content="Ура! Я придумал, как мы проведём этот день 💖">
+    <meta property="og:image" content="assets/2.JPG">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#ff5f9e">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main class="container">
+        <div class="card">
+            <img src="assets/2.JPG" alt="Agreement Celebration" class="hero-image">
+            <h1 class="headline" style="color: #ff5f9e;">Ура! Я придумал, как мы проведём этот день 💖</h1>
+            <p style="font-size: 1.1rem; color: #524345; margin-top: -16px;">
+                Подробности — ближе к празднику ✨
+            </p>
+        </div>
+    </main>
+    <canvas id="confetti-canvas"></canvas>
+    <script src="main.js" defer></script>
+    <script>
+        // Inline script to auto-trigger confetti on load for this page
+        window.addEventListener('load', () => {
+            // We'll expose a global burst function or just rely on main.js to init if configured.
+            // Actually, main.js is shared. Let's make main.js handle this page too.
+        });
+    </script>
+</body>
+
+</html>
