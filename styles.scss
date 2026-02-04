@@ -1,0 +1,215 @@
+@use "sass:map";
+
+// Material 3 Design Tokens (Simplified)
+$md-sys-color-primary: #B3261E; // Red/Pink accent
+$md-sys-color-on-primary: #FFFFFF;
+$md-sys-color-primary-container: #F9DEDC;
+$md-sys-color-on-primary-container: #410E0B;
+
+$md-sys-color-secondary: #775652;
+$md-sys-color-on-secondary: #FFFFFF;
+$md-sys-color-secondary-container: #FFDAD6; // Pinkish
+$md-sys-color-on-secondary-container: #2C1512;
+
+$md-sys-color-background: #FFFBFE;
+$md-sys-color-on-background: #1C1B1F;
+$md-sys-color-surface: #FFFBFE;
+$md-sys-color-on-surface: #1C1B1F;
+
+$md-sys-color-surface-variant: #E7E0EC;
+$md-sys-color-on-surface-variant: #49454F;
+$md-sys-color-outline: #79747E;
+
+$md-ref-typeface-brand: 'Roboto', sans-serif;
+$md-ref-typeface-plain: 'Roboto', sans-serif;
+
+$md-sys-typescale-display-small-font: $md-ref-typeface-brand;
+$md-sys-typescale-display-small-line-height: 44px;
+$md-sys-typescale-display-small-size: 36px;
+$md-sys-typescale-display-small-weight: 400;
+
+$md-sys-typescale-label-large-font: $md-ref-typeface-plain;
+$md-sys-typescale-label-large-line-height: 20px;
+$md-sys-typescale-label-large-size: 14px;
+$md-sys-typescale-label-large-weight: 500;
+
+$md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+$md-sys-motion-duration-short4: 200ms;
+$md-sys-motion-duration-medium1: 250ms;
+
+$md-sys-shape-corner-extra-large: 28px;
+$md-sys-shape-corner-full: 9999px;
+
+$md-sys-elevation-level1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+$md-sys-elevation-level2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+// Reset
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $md-ref-typeface-plain;
+  background-color: $md-sys-color-background;
+  color: $md-sys-color-on-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden; // Prevent scroll when button moves near edge
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  padding: 16px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; // Above confetti
+  position: relative;
+}
+
+.card {
+  background-color: $md-sys-color-surface;
+  border-radius: $md-sys-shape-corner-extra-large;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  // Use a subtle surface tint or just shadow for elevation
+  box-shadow: $md-sys-elevation-level1;
+  width: 100%;
+  transition: box-shadow $md-sys-motion-duration-short4 $md-sys-motion-easing-standard;
+
+  &:hover {
+    box-shadow: $md-sys-elevation-level2;
+  }
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: $md-sys-shape-corner-extra-large;
+  object-fit: cover;
+  // Add a soft fade-in animation
+  animation: fadeIn 1s $md-sys-motion-easing-standard;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.headline {
+  font-family: $md-sys-typescale-display-small-font;
+  font-weight: $md-sys-typescale-display-small-weight;
+  font-size: 24px; // Mobile friendly start
+  line-height: 32px;
+  color: $md-sys-color-on-surface;
+
+  @media (min-width: 600px) {
+    font-size: $md-sys-typescale-display-small-size;
+    line-height: $md-sys-typescale-display-small-line-height;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap; // Allow wrapping on very small screens
+  position: relative; // Context for button absolute movement if needed, though we track viewport
+}
+
+.btn {
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 40px;
+  min-width: 100px;
+  
+  font-family: $md-sys-typescale-label-large-font;
+  font-weight: $md-sys-typescale-label-large-weight;
+  font-size: $md-sys-typescale-label-large-size;
+  line-height: $md-sys-typescale-label-large-line-height;
+  letter-spacing: 0.1px;
+  
+  border-radius: $md-sys-shape-corner-full;
+  
+  transition: 
+    background-color $md-sys-motion-duration-short4 $md-sys-motion-easing-standard, 
+    box-shadow $md-sys-motion-duration-short4 $md-sys-motion-easing-standard,
+    transform $md-sys-motion-duration-short4 $md-sys-motion-easing-standard;
+
+  position: relative;
+  overflow: hidden;
+
+  // Ripple effect layer (pseudo)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity $md-sys-motion-duration-short4 linear;
+  }
+
+  &:hover::after {
+    opacity: 0.08;
+  }
+  
+  &:active::after {
+    opacity: 0.12;
+  }
+
+  &:active {
+    transform: scale(0.98); // M3 press state feedback
+  }
+}
+
+.btn-filled {
+  background-color: $md-sys-color-primary;
+  color: $md-sys-color-on-primary;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.12); // Low elevation
+
+  &:hover {
+    box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.15); // Elevation 1
+  }
+
+  &.btn-secondary {
+    background-color: $md-sys-color-secondary-container;
+    color: $md-sys-color-on-secondary-container;
+  }
+}
+
+// "No" button specific styles for absolute positioning when moving
+#btn-no {
+  transition: top $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard,
+              left $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard,
+              transform $md-sys-motion-duration-medium1 $md-sys-motion-easing-standard;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
